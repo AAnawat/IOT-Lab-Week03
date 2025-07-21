@@ -1,5 +1,5 @@
 import { type Context } from "hono"
-import { createStudent, deleteStudent, getStudent, getStudents, updateStudent } from "../models/studentModel"
+import { createStudent, deleteStudent, getStudent, getStudents, updateStudent } from "../models/studentModel.js"
 
 class studentController {
     public async getAll(packet: Context) {
@@ -20,9 +20,9 @@ class studentController {
         }
     }
 
-    public async post(packet: any) {
+    public async post(packet: Context) {
         try {
-            const data = packet.req.valid('json');
+            const data = await packet.req.json();
             await createStudent(data)
             return packet.json({ status: 201, message: 'Student created successfully' })
         } catch (error) {
@@ -31,9 +31,9 @@ class studentController {
         }
     }
 
-    public async put(packet: any) {
+    public async put(packet: Context) {
         try {
-            const data = packet.req.valid('json');
+            const data = await packet.req.json();
             const id = packet.req.param("id");
             await updateStudent(data, id);
             return packet.json({ status: 201, message: 'Updated information' })

@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/students(.*)",
+      "destination": "/api"
+    }
+  ]
+}

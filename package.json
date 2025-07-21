@@ -3,27 +3,30 @@
   "module": "index.ts",
   "type": "module",
   "private": true,
-  "main": "server.ts",
   "scripts": {
-    "dev": "tsx watch server.ts",
-    "start": "bun server.ts",
-    "drizzle": "drizzle-kit --config './config/drizzle.config.ts'"
-  },
-  "devDependencies": {
-    "@types/bun": "latest",
-    "@types/pg": "^8.15.4",
-    "drizzle-kit": "^0.31.4",
-    "tsx": "^4.20.3"
-  },
-  "peerDependencies": {
-    "typescript": "^5"
+    "dev": "tsx watch ./api/index.ts",
+    "start": "bun ./api/index.ts",
+    "drizzle": "drizzle-kit --config './config/drizzle.config.ts'",
+    "vercel:dev": "vercel dev",
+    "vercel": "vercel"
   },
   "dependencies": {
-    "@hono/zod-validator": "^0.7.2",
+    "@hono/node-server": "^1.16.0",
+    "@hono/zod-validator": "^0.7.1",
+    "@types/pg": "^8.15.4",
+    "@vercel/postgres": "^0.10.0",
+    "dayjs": "^1.11.13",
     "dotenv": "^17.2.0",
     "drizzle-orm": "^0.44.3",
     "hono": "^4.8.5",
     "pg": "^8.16.3",
     "zod": "^4.0.5"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.17",
+    "drizzle-kit": "^0.31.4",
+    "tsx": "^4.7.1",
+    "typescript": "^5.8.3",
+    "vercel": "44.4.3"
   }
 }

@@ -1,31 +1,31 @@
 import { eq } from "drizzle-orm";
-import { db } from "../db/dbCon";
-import { students } from "../db/schema/students";
-import { type student } from "../db/interfaces/student";
+import drizzle from "../db/dbCon.js";
+import { students } from "../db/schema/students.js";
+import { type student } from "../db/interfaces/student.js";
 
 export async function getStudents() {
-    return await db.select()
+    return await drizzle.select()
                     .from(students)
 }
 
 export async function getStudent(studentID: string) {
-    return await db.select()
+    return await drizzle.select()
                     .from(students)
                     .where(eq(students.studentID, studentID))
 }
 
 export async function createStudent(student: student) {
-    await db.insert(students)
+    await drizzle.insert(students)
             .values(student)
 }
 
 export async function updateStudent(student: student, studentID: string) {
-    await db.update(students)
+    await drizzle.update(students)
             .set(student)
             .where(eq(students.studentID, studentID))
 }
 
 export async function deleteStudent(studentID: string) {
-    await db.delete(students)
+    await drizzle.delete(students)
             .where(eq(students.studentID, studentID))
 }
