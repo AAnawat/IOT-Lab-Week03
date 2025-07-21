@@ -1,0 +1,29 @@
+{
+  "name": "iot-lab-week03",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "main": "server.ts",
+  "scripts": {
+    "dev": "tsx watch server.ts",
+    "start": "bun server.ts",
+    "drizzle": "drizzle-kit --config './config/drizzle.config.ts'"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/pg": "^8.15.4",
+    "drizzle-kit": "^0.31.4",
+    "tsx": "^4.20.3"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "@hono/zod-validator": "^0.7.2",
+    "dotenv": "^17.2.0",
+    "drizzle-orm": "^0.44.3",
+    "hono": "^4.8.5",
+    "pg": "^8.16.3",
+    "zod": "^4.0.5"
+  }
+}
