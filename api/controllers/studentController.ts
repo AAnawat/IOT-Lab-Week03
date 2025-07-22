@@ -20,10 +20,10 @@ class studentController {
         }
     }
 
-    public async post(packet: Context) {
+    public async post(packet: any) {
         try {
-            const data = await packet.req.json();
-            await createStudent(data)
+            const data = await packet.req.valid('json');
+            await createStudent(data);
             return packet.json({ status: 201, message: 'Student created successfully' })
         } catch (error) {
             console.log(error)
@@ -31,9 +31,9 @@ class studentController {
         }
     }
 
-    public async put(packet: Context) {
+    public async put(packet: any) {
         try {
-            const data = await packet.req.json();
+            const data = await packet.req.valid('json');
             const id = packet.req.param("id");
             await updateStudent(data, id);
             return packet.json({ status: 201, message: 'Updated information' })
