@@ -1,0 +1,17 @@
+.web-logo {
+    height: 3em;
+}
+
+.navBar {
+    border-bottom: 1px solid lightgray;
+    width: 100%;
+    background-color: white;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}

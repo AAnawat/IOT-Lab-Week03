@@ -1,0 +1,3 @@
+interface genre {
+    title: string
+}

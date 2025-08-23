@@ -1,0 +1,11 @@
+#book-cover {
+    width: 40%;
+}
+
+.space-form-sm > *:not(:first-child) {
+    margin-top: 1em;
+
+    h4 {
+        margin-bottom: 0.5em;
+    }
+}

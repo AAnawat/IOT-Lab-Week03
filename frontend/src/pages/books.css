@@ -1,0 +1,14 @@
+#main-banner-books {
+    background-color: rgba(0, 0, 0, 0.5);
+    background-blend-mode: multiply;
+    background-image: url('../assets/images/bg-cafe-2.jpg');
+    background-size: cover;
+}
+
+#loading-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5em;
+}

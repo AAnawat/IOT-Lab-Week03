@@ -1,0 +1,30 @@
+#main-banner-home {
+    background-color: rgba(0, 0, 0, 0.5);
+    background-blend-mode: multiply;
+    background-image: url('../assets/images/bg-cafe-1.jpg');
+    background-size: cover;
+}
+
+#inside-banner {
+    height: 40vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+#img-myself {
+    max-width: 30%;
+}
+
+#info-us {
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+p {
+    color: rgb(56, 56, 56);
+}
