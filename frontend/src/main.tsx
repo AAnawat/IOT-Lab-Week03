@@ -8,6 +8,7 @@ import { Notifications } from '@mantine/notifications';
 import './index.css'
 import '@mantine/core/styles.css'
 import '@mantine/notifications/styles.css'
+import '@mantine/dates/styles.css'
 
 import HomePage from './pages/home';
 import BooksPage from './pages/books';

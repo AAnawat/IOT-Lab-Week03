@@ -1,5 +1,5 @@
 import NavBar from "../components/navBar";
-import { useForm } from '@mantine/form';
+import { isNotEmpty, useForm } from '@mantine/form';
 import { Textarea, TextInput, Group, Button, Divider, Container, TagsInput} from "@mantine/core";
 import './addBook.css'
 import { useState } from "react";
@@ -7,6 +7,7 @@ import apiCaller from "../services/axios";
 import { AxiosError } from "axios";
 import { notifications } from "@mantine/notifications";
 import { useNavigate } from "react-router-dom";
+import { DateTimePicker } from "@mantine/dates";
 
 export default function AddBook() {
     const [loading, setLoading] = useState(false)
@@ -17,28 +18,34 @@ export default function AddBook() {
             mode: 'uncontrolled',
             initialValues: {
             name: '',
+            author: '',
             desc: '',
-            syno: ''
+            syno: '',
+            publish: new Date()
         },
 
         validate: {
             name: (value) => (/.+/.test(value) ? null : 'กรุณาระบุชื่อหนังสือ'),
+            author: (value) => (/.+/.test(value) ? null : 'กรุณาระบุชื่อผู้แต่ง'),
             desc: (value) => (/.+/.test(value) ? null : 'กรุณาระบุคำอธิบาย'),
-            syno: (value) => (/.+/.test(value) ? null : 'กรุณาระบุเรื่องย่อ')
+            syno: (value) => (/.+/.test(value) ? null : 'กรุณาระบุเรื่องย่อ'),
+            publish: isNotEmpty("กรุณาระบุวันแต่ง")
         },
     });
 
     const handleAddBook = () => {
         setLoading(true)
-        const { name, desc, syno } = form.getValues()
+        const { name, author, desc, syno, publish } = form.getValues()
 
         apiCaller({
             method: 'post',
             url: '/books',
             data: {
                 title: name,
+                author: author,
                 description: desc,
                 synopsis: syno,
+                publishedAt: publish,
                 genres: tags
             }
         })
@@ -82,9 +89,11 @@ export default function AddBook() {
             <h2 className="mg-bt-sm">เพิ่มหนังสือในระบบ</h2>
             <form className="space-form-nm" onSubmit={form.onSubmit(handleAddBook)}>
                 <TextInput label="ชื่อหนังสือ" placeholder="ชื่อหนังสือ" key={form.key('name')} {...form.getInputProps('name')}/>
+                <TextInput label="ชื่อผู้แต่ง" placeholder="ชื่อผู้แต่ง" key={form.key('author')} {...form.getInputProps('author')}/>
                 <TextInput label="คำอธิบาย" placeholder="คำอธิบายหนังสือ" key={form.key('desc')} {...form.getInputProps('desc')} />
                 <Textarea label="เรื่องย่อ" placeholder="เรื่องย่อ" key={form.key('syno')} rows={10} {...form.getInputProps('syno')} />
-                <TagsInput label="Genres" value={tags} onChange={setTags} placeholder="Enter tag" />
+                <DateTimePicker label="วันที่พิมพ์" placeholder="Pick date and time" key={form.key('publish')} {...form.getInputProps('publish')} />
+                <TagsInput label="หมวดหมู่" value={tags} onChange={setTags} placeholder="Enter tag" />
                 <Divider mt={20} />
                 <Group justify="flex-start" mt="md">
                     <Button type="submit" loading={loading}>บันทึกข้อมูล</Button>

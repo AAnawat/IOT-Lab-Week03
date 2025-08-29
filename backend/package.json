@@ -7,7 +7,7 @@
     "dev": "tsx watch ./api/index.ts",
     "start": "bun ./api/index.ts",
     "seed:main": "tsx ./api/db/seed/everyTable.ts",
-    "drizzle": "drizzle-kit --config './config/drizzle.config.ts'",
+    "drizzle": "drizzle-kit --config ./config/drizzle.config.ts",
     "vercel:dev": "vercel dev",
     "vercel": "vercel"
   },

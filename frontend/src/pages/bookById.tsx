@@ -44,7 +44,8 @@ export default function BookById() {
     } else if (!loading && bookData) {
         return <NavBar>
             <Container>
-                <h1 className="mg-bt-sm">{bookData.title}</h1>
+                <h1>{bookData.title}</h1>
+                <h3 className="mg-bt-sm text-gray">{bookData.author}</h3>
                 <Flex gap={"xl"} className="mg-bt-nm">
                     <img src="https://placehold.co/150x200" alt={bookData.title} id="book-cover" />
                     <Stack className="space-form-sm">

@@ -28,7 +28,7 @@ interface insertBookData {
 }
 export async function addBook(data: insertBookData) {
     return drizzle.transaction(async (tx) => {
-        const insertID: number = (await tx.insert(books).values(data.book).returning({ id: books.id }))[0].id
+        const insertID: number = (await tx.insert(books).values({...data.book, publishedAt: data.book.publishedAt.getTime()}).returning({ id: books.id }))[0].id
         await tx.insert(genres).values(data.genre).onConflictDoNothing();
         const genresID: number[] = (await tx.select({id: genres.id}).from(genres).where(inArray(genres.title, data.genre.map((tmp) => tmp.title)))).map((value) => value.id)
         console.log(genresID);
@@ -59,7 +59,7 @@ export async function updateBook(id: number, data: updateBookData) {
     return drizzle.transaction(async (tx) => {
         if (data.book) {
             await tx.update(books)
-                .set(data.book)
+                .set({...data.book, publishedAt: data.book.publishedAt.getTime()})
                 .where(eq(books.id, id))
         }
 

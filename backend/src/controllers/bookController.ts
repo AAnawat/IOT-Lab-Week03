@@ -40,8 +40,10 @@ class bookController {
             const payload = {
                 book: {
                     title: data.title,
+                    author: data.author,
                     description: data.description,
-                    synopsis: data.synopsis
+                    synopsis: data.synopsis,
+                    publishedAt: data.publishedAt
                 },
                 genre: genres
             } 
@@ -60,8 +62,10 @@ class bookController {
             if (data.title) {
                 payload.book = {
                     title: data.title,
+                    author: data.author,
                     description: data.description,
-                    synopsis: data.synopsis
+                    synopsis: data.synopsis,
+                    publishedAt: data.publishedAt
                 }
             }
             if (data.deleteGenre) payload.deleteGenre = data.deleteGenre
